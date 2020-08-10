@@ -20,7 +20,8 @@ library(tidyverse)
 ## Load data
 
 ```{r data_read}
-gap <- read_csv("https://bit.ly/gap_data")
+
+gap_upd <- read_csv("https://bit.ly/gap_data_upd")
 ```
 
 ## Exercises
@@ -30,7 +31,7 @@ gap <- read_csv("https://bit.ly/gap_data")
 Take a glimpse at the data set with function `glimpse()`.
 
 ```{r glimpse}
-glimpse(gap)
+glimpse(gap_upd)
 ```
 
 How many variables and observations are in `gap`? What are the variable types
@@ -53,7 +54,7 @@ Var 6    | double
 Create a scatter plot of life expectancy versus year for the United States.
 
 ```{r ex2_part1, eval=FALSE}
-gap_usa <- gap %>% 
+gap_usa <- gap_upd %>% 
   filter(country == "United States")
 
 ggplot(data = gap_usa, mapping = aes(x = year, y = lifeExp)) +
@@ -66,7 +67,7 @@ Create a plot of life expectancy verses GDP per capita for Canada. Set the
 color of the points to be red and connect them with a solid black line.
 
 ```{r ex2_part2}
-gap_can <- gap %>% 
+gap_can <- gap_upd %>% 
   filter(country == "Canada")
 
 ggplot(data = gap_can, mapping = aes(x = gdpPercap, y = lifeExp)) +
@@ -79,7 +80,7 @@ Create a scatter plot of life expectancy versus GDP per capita based on all
 countries in Africa in 1992. Set the color to be purple.
 
 ```{r ex2_part3}
-gap_afr <- gap %>% 
+gap_afr <- gap_upd %>% 
   filter(continent == "Africa") %>%
    filter(year == 1992)
 
@@ -107,7 +108,7 @@ two continents.
    be set for each level of the variable `continent`.
 
 ```{r ex3_part1}
-gap_afreu <- gap %>% 
+gap_afreu <- gap_upd %>% 
   filter(continent %in% c("Africa", "Europe")) %>%
    filter(year == 1992)
 
@@ -129,7 +130,7 @@ Fill the boxplots with color `darkgreen`.
 3. Use `geom_boxplot()` and set the fill to `darkgreen`.
 
 ```{r ex3_part2}
-gap_2007 <- gap %>% 
+gap_2007 <- gap_upd %>% 
    filter(year == 2007)
 
 ggplot(data = gap_2007, mapping = aes(x = continent, y = gdpPercap)) +
